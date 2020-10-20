@@ -80,10 +80,13 @@
     res.innerHTML = result.map(item => item.name).join(', ');
   }
 
-  selectOptions = unique(usersAge);
-  let selectInnerHTML = selectOptions.reduce((current, item) => current+ `<option value="${item}">${item}</option>`, '' );
-  usersSelect.insertAdjacentHTML('beforeend', selectInnerHTML);
+  function createAndAddOption(current, item){
+    return current + `<option value="${item}">${item}</option>`;
+  }
 
+  selectOptions = unique(usersAge);
+  let selectInnerHTML = selectOptions.reduce(createAndAddOption, '' );
+  usersSelect.insertAdjacentHTML('beforeend', selectInnerHTML);
   usersSelect.addEventListener('change',filterUsers)
 
 </script>
