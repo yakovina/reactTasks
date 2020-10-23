@@ -30,8 +30,13 @@
   }
 
   function createList(array) {
-    let arrListHTML = [...array].sort().map(createItem).join('');
+    let arrList = [...array];
+    let arrListHTML = '';
+    for (let item of arrList){
+      arrListHTML+= createItem(item);
+    }
     listNode.innerHTML = arrListHTML;
+
   }
 
   ///Сигнатура map
