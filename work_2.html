@@ -62,32 +62,35 @@
   ];
   let selectOptions;
 
-  let usersAge = users.map(item => +item.age);
 
-
-  function unique(arr) {
-    let result = [];
-    for (let str of arr) {
-      if (!result.includes(str)) {
-        result.push(str);
+  function findUniqueByProperty(property) {
+    return function (arr) {
+      let result = [];
+      for (let item of arr) {
+        if (!result.includes(item[property].trim())) {
+          result.push(item[property].trim());
+        }
       }
+      return result;
     }
-    return result;
   }
 
-  function filterUsers(){
-    let result= this.value>0 ? users.filter(item => +item.age === +this.value) : [...users];
-    res.innerHTML = result.map(item => item.name).join(', ');
+  function filterBy (property, arr) {
+    return (e)=> {
+      let result = e.target.value > 0 ? arr.filter(item => item[property] === e.target.value) : [...arr];
+      res.innerHTML = result.map(item => item.name).join(', ');
+    }
   }
 
-  function createAndAddOption(current, item){
+  function addOption(current, item){
     return current + `<option value="${item}">${item}</option>`;
   }
 
-  selectOptions = unique(usersAge);
-  let selectInnerHTML = selectOptions.reduce(createAndAddOption, '' );
+
+  selectOptions = findUniqueByProperty('age')(users);
+  let selectInnerHTML = selectOptions.reduce(addOption, '' );
   usersSelect.insertAdjacentHTML('beforeend', selectInnerHTML);
-  usersSelect.addEventListener('change',filterUsers)
+  usersSelect.addEventListener('change',filterBy('age', users))
 
 </script>
 
