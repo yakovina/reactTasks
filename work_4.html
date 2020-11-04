@@ -21,11 +21,10 @@
     return `${this.firstName} adds ${a + b + c}`;
   }
   function bind(fn,user) {
-    var args = Array.prototype.slice.call(arguments,2);
+    var argsOfBind = Array.prototype.slice.call(arguments,2);
     return function () {
-      var argsInside = Array.prototype.slice.call(arguments);
-      let arrayFin = args.concat(argsInside).slice(0,3);
-      console.log(add.apply(user,arrayFin));
+      var argsOfAdd = argsOfBind.concat(Array.prototype.slice.call(arguments)).slice(0,3);
+      console.log(add.apply(user,argsOfAdd));
     }
   }
   // usage
