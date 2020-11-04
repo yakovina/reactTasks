@@ -24,6 +24,9 @@
   const phoneRegExp = /\D?(\d{3})\D*(\d{3})\D*(\d{4})/g;
   const phoneFormat = '($1)-$2-$3';
 
+  //закинула в массив, допустив, что может быть между телефонами не только разлелитель строки, но и несколько и пофиг что еще,
+  // а нам, по логике, нужны только телефоны
+
   let phonesArray = st.match(phoneRegExp).map(item => item.replace(phoneRegExp,phoneFormat ));
   console.log(phonesArray.join('\n'))
 
