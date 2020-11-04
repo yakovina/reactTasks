@@ -1,84 +1,33 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Work 1</title>
-  <meta charset="utf-8"/>
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"
-  />
-  <style>
-    li {
-      font-size: 22px;
-    }
-
-    li:hover {
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
-<div class="container">
-  <h1 class="mb-5 text-center">Work 1</h1>
-  <div class="row">
-    <div class="col-sm-3">
-      <ul id="list" class="list-group">
-        <li class="list-group-item text-center">1</li>
-        <li class="list-group-item text-center">2</li>
-        <li class="list-group-item text-center">3</li>
-        <li class="list-group-item text-center">4</li>
-        <li class="list-group-item text-center">5</li>
-      </ul>
-    </div>
-  </div>
 
-  <script>
-    /*
-При клике на любой элемент li мы в alert() получаем цифру 5
-а по логике должны получать номер элемента на который кликнули
+<script>
 
-Задачи
-1. С помощью debugger проанализировать почему так получается
-2. С помощью замыкания сделать так, чтобы при клике на элемент
-li получали его номер (let НЕ ИСПОЛЬЗОВАТЬ)
-3. Выполнить задачу 2 но при этом используя объявление
-итерационной переменной через let
+  /*  Начальные 3 цифры в каждом номере - это код оператора
+  Сделать вывод  в консоль таким
+  (063) 111 1234
+  (333) 456 8768
+  (444) 657 5547
+  */
+  let st = `063-111-1234
+(333) 456-8768
+4446575547`;
 
-*/
-//задание
-    const list = document.getElementById("list"),
-      els = list.getElementsByTagName("li");
-    //
-    for ( var i = 0, len = els.length; i < len; i++) {
-      els[i].onclick = function () {
-        alert(i);
-      };
-    }
+  const phoneRegExp = /\D?(\d{3})\D*(\d{3})\D*(\d{4})/g;
+  const phoneFormat = '($1)-$2-$3';
 
+  let phonesArray = st.match(phoneRegExp).map(item => item.replace(phoneRegExp,phoneFormat ));
+  console.log(phonesArray.join('\n'))
 
-    // не используя let
+</script>
 
-    function createFunction(i) {
-      return function () {
-        alert(i+1);
-      }
-    }
-    let funcArr = [];
-    for (var i = 0, len = els.length; i < len; i++) {
-      els[i].onclick = createFunction(i);
-    }
-
-    //используя let
-    for (let i = 0, len = els.length; i < len; i++) {
-      els[i].onclick = function () {
-        alert(i+1);
-      };
-    }
-
-
-  </script>
-</div>
 </body>
 </html>
