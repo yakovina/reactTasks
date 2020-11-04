@@ -1,25 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <title>JavaScript - work_2.html</title>
-  <meta charset="utf-8" />
+  <title>JavaScript - regSearch.html</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    .out span {
+      color: yellowgreen;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+    .out span.uppercase{
+
+    }
+  </style>
 </head>
 <body>
-<h2>work 2</h2>
+
+<div class="container">
+  <h1 id="out" class="out">Javascript is exelent languare.<br>We like to learn javascript.</h1>
+  <input id="btn" class="btn btn-primary" type="button" value="Click me">
+</div>
+<!--
+    Заменить словосочетание javascript в параграфе  на JAVASCRIPT.
+-->
+
 <script>
-  /*
-   * Написать функцию sum(a), которая должна вызываться как
-   *    sum(a)(b)  и возвращать сумму двух чисел
-   *   Например  sum(3)(1) -> 4  , sum(7)(-1) -> 6
-   * */
-  function sum(a) {
-    return function (b) {
-        return a + b;
-    }
+  const out = document.getElementById('out');
+  const regExp = /javascript/gi;
+
+
+  //можно так
+  function jsToUpperCase(match) {
+    return `<span>${match.toUpperCase()}</span>`
   }
-  console.log(sum(7)(-1))
-  console.log(sum(3)(1))
+
+  //но поидее правильнее будет не форматировать текст в js, потому вот так:
+  function jsToUpperCase2(match) {
+    return `<span class="uppercase">${match}</span>`
+  }
+
+  out.innerHTML = out.innerHTML.replace(regExp, jsToUpperCase2);
+
 
 </script>
+
+
 </body>
-</html>
